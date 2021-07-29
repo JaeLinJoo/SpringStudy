@@ -14,14 +14,14 @@ public class MemberService {
     /**
     * 회원가입
     */
-    private  Long join(Member member){
+    public Long join(Member member){
 
-        validateDuplicateMemeber(member); // 중복 회원 검증증
+        validateDuplicateMember(member); // 중복 회원 검증증
        memberRepository.save(member);
         return member.getId();
     }
 
-    private void validateDuplicateMemeber(Member member) {
+    private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m ->  {
                     throw  new IllegalStateException("이미 존재하는 회원입니다.");
